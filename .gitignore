@@ -63,3 +63,11 @@ fastlane/test_output
 *.swo
 *~
 .tmp/
+node_modules/
+dist/
+.env
+*.log
+.DS_Store
+coverage/
+.vscode/
+.idea/
