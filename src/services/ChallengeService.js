@@ -103,15 +103,18 @@ class ChallengeService {
     const creator = this.getUserById(challenge.creatorId);
     const opponent = this.getUserById(challenge.opponentId);
 
-    // Deduct stakes from both users
-    if (!creator.deductBalance(challenge.stake)) {
+    // Check both balances before deducting to avoid race conditions
+    if (!creator.canAfford(challenge.stake)) {
       throw new Error('Creator has insufficient balance');
     }
 
-    if (!opponent.deductBalance(challenge.stake)) {
-      creator.addBalance(challenge.stake); // Refund creator
+    if (!opponent.canAfford(challenge.stake)) {
       throw new Error('Opponent has insufficient balance');
     }
+
+    // Deduct stakes from both users
+    creator.deductBalance(challenge.stake);
+    opponent.deductBalance(challenge.stake);
 
     challenge.status = ChallengeStatus.LOCKED;
     return challenge;

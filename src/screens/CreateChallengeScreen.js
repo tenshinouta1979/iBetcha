@@ -220,7 +220,7 @@ const styles = StyleSheet.create({
   opponentSelector: {
     flexDirection: 'row',
     flexWrap: 'wrap',
-    gap: 10,
+    marginHorizontal: -5,
   },
   opponentOption: {
     backgroundColor: '#FFFFFF',
@@ -230,6 +230,7 @@ const styles = StyleSheet.create({
     borderColor: '#E0E0E0',
     minWidth: 100,
     alignItems: 'center',
+    margin: 5,
   },
   opponentOptionSelected: {
     borderColor: '#6200EE',

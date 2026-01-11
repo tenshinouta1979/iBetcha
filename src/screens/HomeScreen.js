@@ -17,8 +17,11 @@ const HomeScreen = ({ navigation }) => {
 
   const onRefresh = () => {
     setRefreshing(true);
-    setChallenges(ChallengeService.getAllChallenges());
-    setRefreshing(false);
+    // Simulate async refresh with timeout for better UX
+    setTimeout(() => {
+      setChallenges(ChallengeService.getAllChallenges());
+      setRefreshing(false);
+    }, 300);
   };
 
   const getStatusColor = (status) => {
